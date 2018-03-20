@@ -8,13 +8,16 @@ const app = express();
 // aware of new strategy
 // creates a new instance to authenticate users
 passport.use(
-  new GoogleStrategy({
-    clientID: keys.googleClientID,
-    clientSecret: keys.googleClientSecret,
-    callbackURL: '/auth/google/callback'
-  }, (accessToken) => {
-    console.log(accessToken);
-  })
+  new GoogleStrategy(
+    {
+      clientID: keys.googleClientID,
+      clientSecret: keys.googleClientSecret,
+      callbackURL: '/auth/google/callback'
+    },
+    accessToken => {
+      console.log(accessToken);
+    }
+  )
 );
 
 const PORT = process.env.PORT || 5000;
