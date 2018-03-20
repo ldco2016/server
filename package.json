@@ -1,0 +1,21 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "engines": {
+    "node": "9.3.0",
+    "npm": "5.6.0"
+  },
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Luis D. Cortes <renaissance.scholar2012@gmail.com> (http://www.dancortes.com/)",
+  "license": "MIT",
+  "dependencies": {
+    "express": "4.16.2",
+    "npm": "5.7.1",
+    "passport": "0.4.0",
+    "passport-google-oauth20": "1.0.0"
+  }
+}
