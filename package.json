@@ -9,9 +9,12 @@
   },
   "scripts": {
     "start": "node index.js",
-    "dev": "nodemon index.js"
+    "server": "nodemon index.js",
+    "client": "npm run start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
-  "author": "Luis D. Cortes <renaissance.scholar2012@gmail.com> (http://www.dancortes.com/)",
+  "author":
+    "Luis D. Cortes <renaissance.scholar2012@gmail.com> (http://www.dancortes.com/)",
   "license": "MIT",
   "dependencies": {
     "cookie-session": "2.0.0-beta.3",
