@@ -18,10 +18,7 @@ module.exports = app => {
 
   app.get('/api/logout', (req, res) => {
     req.logout();
-    // prove to whoever is
-    // making request that
-    // they are no longer signed in
-    res.send(req.user);
+    res.redirect('/');
   });
 
   app.get('/api/current_user', (req, res) => {
