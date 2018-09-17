@@ -33,8 +33,8 @@ class Header extends Component {
     return (
       <nav>
         <div className="nav-wrapper">
-          <Link to={this.props.auth ? '/csa' : '/'} className="left brand-logo">
-            MicroUrbCSA
+          <Link to={this.props.auth ? '/survey' : '/'} className="left brand-logo">
+            SurveyMail
           </Link>
           <ul className="right">{this.renderContent()}</ul>
         </div>
