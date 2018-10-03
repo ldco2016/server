@@ -11,6 +11,8 @@
     }
   },
   "dependencies": {
+    "cryptiles": "4.1.2",
+    "macaddress": "0.2.9",
     "materialize-css": "1.0.0-rc.1",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
