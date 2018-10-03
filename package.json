@@ -12,11 +12,9 @@
     "server": "nodemon index.js",
     "client": "npm run start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "heroku-postbuild":
-      "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
-  "author":
-    "Luis D. Cortes <renaissance.scholar2012@gmail.com> (http://www.dancortes.com/)",
+  "author": "Luis D. Cortes <renaissance.scholar2012@gmail.com> (http://www.dancortes.com/)",
   "license": "MIT",
   "dependencies": {
     "axios": "0.18.0",
@@ -30,6 +28,7 @@
     "passport": "0.4.0",
     "passport-google-oauth20": "1.0.0",
     "redux-thunk": "2.3.0",
+    "sendgrid": "5.2.3",
     "stripe": "6.3.0"
   }
 }
