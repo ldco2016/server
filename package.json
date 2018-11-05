@@ -12,11 +12,9 @@
     "server": "nodemon index.js",
     "client": "npm run start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "heroku-postbuild":
-      "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
-  "author":
-    "Luis D. Cortes <renaissance.scholar2012@gmail.com> (https://dancortes-portfolio.herokuapp.com/)",
+  "author": "Luis D. Cortes <renaissance.scholar2012@gmail.com> (https://dancortes-portfolio.herokuapp.com/)",
   "license": "MIT",
   "dependencies": {
     "atob": "2.1.0",
@@ -28,6 +26,7 @@
     "deep-extend": "0.5.1",
     "express": "4.16.2",
     "macaddress": "0.2.9",
+    "merge": "1.2.1",
     "mongoose": "5.0.14",
     "node": "8.10.0",
     "nodemon": "1.18.4",
