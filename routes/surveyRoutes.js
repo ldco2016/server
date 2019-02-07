@@ -1,3 +1,6 @@
+const _ = require('lodash');
+const Path = require('path-parser');
+const { URL } = require('url');
 const mongoose = require('mongoose');
 const requireLogin = require('../middlewares/requireLogin');
 const requireCredits = require('../middlewares/requireCredits');
@@ -7,8 +10,62 @@ const surveyTemplate = require('../services/emailTemplates/surveyTemplate');
 const Survey = mongoose.model('surveys');
 
 module.exports = app => {
-  app.get('/api/surveys/thanks', (req, res) => {
+  app.get('/api/surveys', requireLogin, async (req, res) => {
+    const surveys = await Survey.find({ _user: req.user.id });
+
+    res.send(surveys);
+  });
+
+  app.get('/api/surveys/:surveyId/:choice', (req, res) => {
     res.send('Thanks for voting!');
+  });
+
+  app.post('/api/surveys/webhooks', (req, res) => {
+    // create a matcher
+    const p = new Path('/api/surveys/:surveyId/:choice');
+
+    _.chain(req.body)
+      // looking at the list of events
+      .map(({ email, url }) => {
+        // use matcher to extract survey id and choice
+        const match = p.test(new URL(url).pathname);
+        if (match) {
+          return {
+            email,
+            surveyId: match.surveyId,
+            choice: match.choice
+          };
+        }
+      })
+      // remove any elements that are undefined
+      .compact()
+      // no records with duplicate email and surveyId
+      .uniqBy('email', 'surveyId')
+      .each(({ surveyId, email, choice }) => {
+        // below we are making use of Mongo operators to put the work of
+        // querying on Mongo and not our Express server
+        // this is executing entirely in Mongo database
+        Survey.updateOne(
+          {
+            // update _id of
+            _id: surveyId,
+            // recipient found who has not responded
+            recipients: {
+              $elemMatch: { email: email, responded: false }
+            }
+          },
+          {
+            $inc: { [choice]: 1 },
+            // dollar sign is to update just the subdocument
+            // collection recipient we care about to true
+            $set: { 'recipients.$.responded': true },
+            lastResponded: new Date()
+          }
+        ).exec();
+      })
+      .value();
+
+    res.send({});
   });
 
   app.post('/api/surveys', requireLogin, requireCredits, async (req, res) => {
