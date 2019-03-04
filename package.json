@@ -30,7 +30,7 @@
     "localtunnel": "1.9.1",
     "lodash": "4.17.11",
     "macaddress": "0.2.9",
-    "merge": ">=1.2.1",
+    "merge": "1.2.1",
     "mongoose": "5.4.17",
     "node": "8.10.0",
     "nodemon": "1.18.4",
@@ -38,6 +38,7 @@
     "passport": "0.4.0",
     "passport-google-oauth20": "1.0.0",
     "path-parser": "4.2.0",
+    "react-dev-utils": "5.0.2",
     "redux-thunk": "2.3.0",
     "sendgrid": "5.2.3",
     "stripe": "6.3.0"
