@@ -7,13 +7,18 @@
     "node": "9.3.0",
     "npm": "5.6.0"
   },
+  "jest": {
+    "verbose": true,
+    "testURL": "http://localhost/"
+  },
   "scripts": {
     "start": "node index.js",
     "server": "nodemon index.js",
     "client": "npm run start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\" \"npm run webhook\"",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
-    "webhook": "lt -p 5000 -s tantrific"
+    "webhook": "lt -p 5000 -s tantrific",
+    "test": "jest"
   },
   "author": "Luis D. Cortes <renaissance.scholar2012@gmail.com> (https://dancortes-portfolio.herokuapp.com/)",
   "license": "MIT",
@@ -42,5 +47,9 @@
     "redux-thunk": "2.3.0",
     "sendgrid": "5.2.3",
     "stripe": "6.3.0"
+  },
+  "devDependencies": {
+    "jest": "22.1.4",
+    "puppeteer": "1.0.0"
   }
 }
