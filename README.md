@@ -12,3 +12,7 @@ The Express server of this application serves about seven different routes total
 ![](images/Express_Routes.png)
 
 There is an alternate application that was built with similar tools that not only have routes to handle authentication but also has routes to handle blog posts that will be available on Github soon.
+
+# Tests
+
+Added a Testing Suite via Jest and Puppeteer/Chromium.
