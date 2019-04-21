@@ -8,9 +8,9 @@
     "npm": "5.6.0"
   },
   "jest": {
-    "setupTestFrameworkScriptFile": "./tests/setup.js",
     "verbose": true,
-    "testURL": "http://localhost/"
+    "testURL": "http://localhost/",
+    "setupTestFrameworkScriptFile": "./tests/setup.js"
   },
   "scripts": {
     "start": "node index.js",
