@@ -1,28 +1,24 @@
-const puppeteer = require("puppeteer");
-const session = require("./factories/sessionFactory");
+const Page = require("./helpers/page");
 
-let browser, page;
+let page;
 
 beforeEach(async () => {
-  browser = await puppeteer.launch({
-    headless: false
-  });
-  page = await browser.newPage();
+  page = await Page.build();
   await page.goto("localhost:3000");
 });
 
 afterEach(async () => {
-  await browser.close();
+  await page.close();
 });
 
 test("The header has the correct text", async () => {
-  const text = await page.$eval("a.brand-logo", el => el.innerHTML);
+  const text = await page.getContentsOf("a.brand-logo");
 
   expect(text).toEqual("SurveyMail");
 });
 
 test("clicking login starts oauth flow", async () => {
-  await page.click(".right a", el => el.innerHTML);
+  await page.click(".right a");
 
   const url = await page.url();
 
@@ -30,12 +26,7 @@ test("clicking login starts oauth flow", async () => {
 });
 
 test("when signed in shows logout button", async () => {
-  const { session, sig } = sessionFactory();
-
-  await page.setCookie({ name: "session", value: session });
-  await page.setCookie({ name: "session.sig", value: sig });
-  await page.goto("localhost:3000");
-  await page.waitFor('a[href="/api/logout"]');
+  await page.login();
 
   const text = await page.$eval('a[href="/api/logout"]', el => el.innerHTML);
 
