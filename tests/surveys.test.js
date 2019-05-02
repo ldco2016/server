@@ -37,7 +37,7 @@ describe("When logged in", async () => {
       expect(text).toEqual("Please confirm your entries");
     });
 
-    test("Submitting then saving adds survey to index page", async () => {
+    xtest("Submitting then saving adds survey to index page", async () => {
       await page.click("button.green");
       await page.waitFor(".card");
 
@@ -59,5 +59,20 @@ describe("When logged in", async () => {
 
       expect(inputError).toEqual("You must provide a value");
     });
+  });
+});
+
+describe("User is not logged in", async () => {
+  const actions = [
+    { method: "get", path: "/api/surveys" },
+    { method: "post", path: "/api/surveys", data: { title: "T", content: "C" } }
+  ];
+
+  test("Survey related actions are prohibited", async () => {
+    const results = await page.execRequests(actions);
+
+    for (let result of results) {
+      expect(result).toEqual({ error: "You must be logged in" });
+    }
   });
 });
