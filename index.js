@@ -10,7 +10,7 @@ require("./models/User");
 require("./models/Survey");
 require("./services/passport");
 
-mongoose.connect(keys.mongoURI);
+mongoose.connect(keys.mongoURI, { useNewUrlParser: true });
 
 const app = express();
 
@@ -28,7 +28,7 @@ require("./routes/authRoutes")(app);
 require("./routes/billingRoutes")(app);
 require("./routes/surveyRoutes")(app);
 
-if (process.env.NODE_ENV === "production") {
+if (["production", "ci"].includes(process.env.NODE_ENV)) {
   // Express will serve up production assets
   // like main.js or main.css
   app.use(express.static("client/build"));
@@ -42,4 +42,6 @@ if (process.env.NODE_ENV === "production") {
 }
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT);
+app.listen(PORT, () => {
+  console.log(`Listening on port`, PORT);
+});
