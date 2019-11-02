@@ -37,7 +37,7 @@
     "lodash": "4.17.11",
     "macaddress": "0.2.9",
     "merge": "1.2.1",
-    "mongoose": "5.4.17",
+    "mongoose": "5.7.5",
     "node": "8.10.0",
     "nodemon": "1.18.4",
     "npm": "5.7.1",
