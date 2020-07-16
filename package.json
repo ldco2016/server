@@ -34,7 +34,7 @@
     "event-stream": "3.3.4",
     "express": "4.16.2",
     "localtunnel": "1.9.1",
-    "lodash": "4.17.11",
+    "lodash": "4.17.19",
     "macaddress": "0.2.9",
     "merge": "1.2.1",
     "mongoose": "5.4.17",
