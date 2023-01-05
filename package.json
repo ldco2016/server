@@ -50,7 +50,7 @@
     "stripe": "6.3.0"
   },
   "devDependencies": {
-    "jest": "22.1.4",
+    "jest": "29.3.1",
     "puppeteer": "1.14.0"
   }
 }
